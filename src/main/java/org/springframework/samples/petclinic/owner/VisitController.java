@@ -21,6 +21,11 @@ import javax.validation.Valid;
 
 import org.springframework.samples.petclinic.visit.Visit;
 import org.springframework.samples.petclinic.visit.VisitRepository;
+
+import org.springframework.samples.petclinic.vet.Vet;
+import org.springframework.samples.petclinic.vet.VetRepository;
+import org.springframework.samples.petclinic.vet.Vets;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -42,11 +47,13 @@ class VisitController {
 
     private final VisitRepository visits;
     private final PetRepository pets;
+    private final VetRepository vets;
 
 
-    public VisitController(VisitRepository visits, PetRepository pets) {
+    public VisitController(VisitRepository visits, PetRepository pets, VetRepository vets) {
         this.visits = visits;
         this.pets = pets;
+        this.vets = vets;
     }
 
     @InitBinder
@@ -66,9 +73,16 @@ class VisitController {
      */
     @ModelAttribute("visit")
     public Visit loadPetWithVisit(@PathVariable("petId") int petId, Map<String, Object> model) {
+
+        Vets vets = new Vets();
+        vets.getVetList().addAll(this.vets.findAll());
+        model.put("vets", vets);
+
+
         Pet pet = this.pets.findById(petId);
         pet.setVisitsInternal(this.visits.findByPetId(petId));
         model.put("pet", pet);
+
         Visit visit = new Visit();
         pet.addVisit(visit);
         return visit;
