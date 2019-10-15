@@ -60,8 +60,9 @@ CREATE TABLE IF NOT EXISTS visits (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   pet_id INT(4) UNSIGNED NOT NULL,
   visit_date DATE,
-  visit_time_start DATETIME,
-  visit_time_end DATETIME,
+  vet_id INT(4),
+  visit_time INT(4),
   description VARCHAR(255),
-  FOREIGN KEY (pet_id) REFERENCES pets(id)
+  FOREIGN KEY (pet_id) REFERENCES pets(id),
+  FOREIGN KEY (vet_id) REFERENCES vets(id)
 ) engine=InnoDB;
