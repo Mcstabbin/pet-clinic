@@ -7,6 +7,16 @@
     <th:block th:if="${visit['new']}">New </th:block>
     Visit
   </h2>
+    <tbody>
+      <tr th:each="vet : ${vets.vetList}">
+        <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
+        <td><span th:each="specialty : ${vet.specialties}"
+          th:text="${specialty.name + ' '}" /> <span
+          th:if="${vet.nrOfSpecialties == 0}">none</span></td>
+      </tr>
+    </tbody>
+
+
 
   <b>Pet</b>
   <table class="table table-striped">
@@ -34,8 +44,8 @@
         th:replace="~{fragments/inputField :: input ('Date', 'date', 'date')}"  />
       <input
         th:replace="~{fragments/inputField :: input ('Description', 'description', 'text')}" />
-<!--       <input
-        th:replace="~{fragments/inputField :: input ('Vetrinarian', 'vet', 'text')}" /> -->
+      <input
+        th:replace="~{fragments/inputField :: input ('Vetrinarian', 'vetId', 'text')}" />
     </div>
 
     <div class="form-group">
@@ -56,6 +66,7 @@
     <tr th:if="${!visit['new']}" th:each="visit : ${pet.visits}">
       <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}" /></td>
       <td th:text=" ${visit.description}" /></td>
+      <td th:text=" ${visit.vetId}" /></td>
     </tr>
   </table>
 
