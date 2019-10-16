@@ -45,7 +45,7 @@
       <input
         th:replace="~{fragments/inputField :: input ('Description', 'description', 'text')}" />
       <input
-        th:replace="~{fragments/inputField :: input ('Vetrinarian', 'vetId', 'text')}" />
+        th:replace="~{fragments/selectField2 :: select ('Vetrinarian', 'vetId', ${vets.vetList})}" />
     </div>
 
     <div class="form-group">
@@ -62,6 +62,7 @@
     <tr>
       <th>Date</th>
       <th>Description</th>
+      <th>Vet Id</th>
     </tr>
     <tr th:if="${!visit['new']}" th:each="visit : ${pet.visits}">
       <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}" /></td>

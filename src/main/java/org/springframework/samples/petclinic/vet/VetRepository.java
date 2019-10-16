@@ -16,6 +16,8 @@
 package org.springframework.samples.petclinic.vet;
 
 import java.util.Collection;
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
@@ -43,5 +45,11 @@ public interface VetRepository extends Repository<Vet, Integer> {
     @Cacheable("vets")
     Collection<Vet> findAll() throws DataAccessException;
 
-
+    // /**
+    //  * Retrieve all {@link VetsLists}s from the data store.
+    //  * @return a Collection of {@link VetsLists}s.
+    //  */
+    // @Query("SELECT id, first_name, last_name FROM vets")
+    // @Transactional(readOnly = true)
+    // List<VetsLists> findVets();
 }
