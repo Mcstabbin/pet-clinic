@@ -7,17 +7,6 @@
     <th:block th:if="${visit['new']}">New </th:block>
     Visit
   </h2>
-    <tbody>
-      <tr th:each="vet : ${vets.vetList}">
-        <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
-        <td th:text="${vet.id}"></td>
-        <td><span th:each="specialty : ${vet.specialties}"
-          th:text="${specialty.name + ' '}" /> <span
-          th:if="${vet.nrOfSpecialties == 0}">none</span></td>
-      </tr>
-    </tbody>
-
-
 
   <b>Pet</b>
   <table class="table table-striped">
@@ -68,11 +57,11 @@
     <tr th:if="${!visit['new']}" th:each="visit : ${pet.visits}">
       <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}" /></td>
       <td th:text=" ${visit.description}" /></td>
-       <span th:each="vet : ${vets.vetList}"> 
+      <span th:each="vet : ${vets.vetList}"> 
         <span th:if="${vet.id == visit.vetId}">
           <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
         </span>
-        </span>
+      </span>
     </tr>
   </table>
 

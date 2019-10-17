@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 package org.springframework.samples.petclinic.owner;
-
 import org.springframework.samples.petclinic.visit.VisitRepository;
+import org.springframework.samples.petclinic.vet.Vet;
 import org.springframework.samples.petclinic.vet.VetRepository;
+import org.springframework.samples.petclinic.vet.Vets;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -132,11 +133,17 @@ class OwnerController {
     @GetMapping("/owners/{ownerId}")
     public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
         ModelAndView mav = new ModelAndView("owners/ownerDetails");
+
+        Vets vets = new Vets();
+        vets.getVetList().addAll(this.vets.findAll());
+
         Owner owner = this.owners.findById(ownerId);
         for (Pet pet : owner.getPets()) {
             pet.setVisitsInternal(visits.findByPetId(pet.getId()));
         }
+
         mav.addObject(owner);
+        mav.addObject(vets);
         return mav;
     }
 

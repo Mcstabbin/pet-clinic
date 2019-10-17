@@ -5,7 +5,7 @@
 
   <body>
   
-  
+
     <h2>Owner Information</h2>
   
   
@@ -58,13 +58,18 @@
               <tr>
                 <th>Visit Date</th>
                 <th>Description</th>
-                <th>VetId</th>
+                <th>Vetrinarian</th>
               </tr>
             </thead>
             <tr th:each="visit : ${pet.visits}">
               <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}"></td>
               <td th:text="${visit?.description}"></td>
-              <td th:text="${visit.vetId}"></td>
+              <span th:each="vet : ${vets.vetList}"> 
+                <span th:if="${vet.id == visit.vetId}">
+                  <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
+                </span>
+              </span>
+
             </tr>
             <tr>
               <td><a
