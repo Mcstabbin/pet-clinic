@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.owner;
 
 import org.springframework.samples.petclinic.visit.VisitRepository;
+import org.springframework.samples.petclinic.vet.VetRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,11 +43,13 @@ class OwnerController {
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
     private final OwnerRepository owners;
     private VisitRepository visits;
+    private VetRepository vets;
 
 
-    public OwnerController(OwnerRepository clinicService, VisitRepository visits) {
+    public OwnerController(OwnerRepository clinicService, VisitRepository visits, VetRepository vets) {
         this.owners = clinicService;
         this.visits = visits;
+        this.vets = vets;
     }
 
     @InitBinder
