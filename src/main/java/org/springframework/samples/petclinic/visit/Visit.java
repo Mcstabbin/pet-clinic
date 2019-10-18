@@ -20,6 +20,11 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+
 import javax.validation.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.BaseEntity;
@@ -41,6 +46,10 @@ public class Visit extends BaseEntity {
     @NotEmpty
     @Column(name = "description")
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "visit_time")
+    private VisitTime visitTime;
 
     @Column(name = "pet_id")
     private Integer petId;

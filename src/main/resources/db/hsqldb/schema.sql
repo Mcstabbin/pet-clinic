@@ -33,6 +33,13 @@ CREATE TABLE types (
 );
 CREATE INDEX types_name ON types (name);
 
+CREATE TABLE visit_times (
+  id   INTEGER IDENTITY PRIMARY KEY,
+  time_window VARCHAR(80)
+);
+CREATE INDEX visit_time_name ON visit_times (time_window);
+
+
 CREATE TABLE owners (
   id         INTEGER IDENTITY PRIMARY KEY,
   first_name VARCHAR(30),
@@ -62,5 +69,8 @@ CREATE TABLE visits (
   visit_time INTEGER,
   description VARCHAR(255)
 );
+
 ALTER TABLE visits ADD CONSTRAINT fk_visits_pets FOREIGN KEY (pet_id) REFERENCES pets (id);
+ALTER TABLE visits ADD CONSTRAINT fk_visits_time FOREIGN KEY (visit_time) REFERENCES visit_times (id);
+ALTER TABLE visits ADD CONSTRAINT fk_visits_vets FOREIGN KEY (vet_id) REFERENCES vets (id);
 CREATE INDEX visits_pet_id ON visits (pet_id);
