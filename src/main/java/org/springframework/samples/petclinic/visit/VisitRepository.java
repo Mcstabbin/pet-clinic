@@ -17,10 +17,11 @@ package org.springframework.samples.petclinic.visit;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.repository.Repository;
 import org.springframework.samples.petclinic.model.BaseEntity;
-
+import org.springframework.transaction.annotation.Transactional;
 /**
  * Repository class for <code>Visit</code> domain objects All method names are compliant with Spring Data naming
  * conventions so this interface can easily be extended for Spring Data.

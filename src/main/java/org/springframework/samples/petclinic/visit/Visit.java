@@ -47,9 +47,8 @@ public class Visit extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "visit_time")
-    private VisitTime visitTime;
+    @Column(name = "visit_time")
+    private Integer timeId;
 
     @Column(name = "pet_id")
     private Integer petId;
@@ -74,6 +73,16 @@ public class Visit extends BaseEntity {
     public String getDescription() {
         return this.description;
     }
+
+    public Integer getTimeId() {
+        return this.timeId;
+    }
+
+    public void setTimeId(Integer timeId) {
+        this.timeId = timeId;
+    }
+
+
 
     public void setDescription(String description) {
         this.description = description;
