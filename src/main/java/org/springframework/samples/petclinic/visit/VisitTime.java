@@ -20,6 +20,19 @@ import javax.persistence.Table;
 
 import org.springframework.samples.petclinic.model.NamedEntity;
 
+
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+
+import javax.validation.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.samples.petclinic.model.BaseEntity;
+
+
+
 /**
  * @author Juergen Hoeller
  *         Can be Cat, Dog, Hamster...
@@ -27,5 +40,12 @@ import org.springframework.samples.petclinic.model.NamedEntity;
 @Entity
 @Table(name = "visit_times")
 public class VisitTime extends NamedEntity {
+
+    @Column(name = "time_window")
+    private String timeWindow;
+
+    public String getTimeWindow() {
+        return this.timeWindow;
+    }
 
 }

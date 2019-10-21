@@ -35,7 +35,8 @@ CREATE INDEX types_name ON types (name);
 
 CREATE TABLE visit_times (
   id   INTEGER IDENTITY PRIMARY KEY,
-  time_window VARCHAR(80)
+  time_window VARCHAR(80),
+  name VARCHAR(80)
 );
 CREATE INDEX visit_time_name ON visit_times (time_window);
 

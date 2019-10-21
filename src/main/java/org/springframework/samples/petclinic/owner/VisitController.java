@@ -22,6 +22,10 @@ import javax.validation.Valid;
 import org.springframework.samples.petclinic.visit.Visit;
 import org.springframework.samples.petclinic.visit.VisitRepository;
 
+import org.springframework.samples.petclinic.visit.VisitTime;
+import org.springframework.samples.petclinic.visit.VisitTimeRepository;
+import org.springframework.samples.petclinic.visit.VisitTimes;
+
 import org.springframework.samples.petclinic.vet.Vet;
 import org.springframework.samples.petclinic.vet.VetRepository;
 import org.springframework.samples.petclinic.vet.Vets;
@@ -48,12 +52,14 @@ class VisitController {
     private final VisitRepository visits;
     private final PetRepository pets;
     private final VetRepository vets;
+    private final VisitTimeRepository visitTimes;
 
 
-    public VisitController(VisitRepository visits, PetRepository pets, VetRepository vets) {
+    public VisitController(VisitRepository visits, PetRepository pets, VetRepository vets, VisitTimeRepository visitTimes) {
         this.visits = visits;
         this.pets = pets;
         this.vets = vets;
+        this.visitTimes = visitTimes;
     }
 
     @InitBinder
@@ -74,9 +80,15 @@ class VisitController {
     @ModelAttribute("visit")
     public Visit loadPetWithVisit(@PathVariable("petId") int petId, Map<String, Object> model) {
 
+
+
         Vets vets = new Vets();
         vets.getVetList().addAll(this.vets.findAll());
         model.put("vets", vets);
+
+        VisitTimes visitTimes = new VisitTimes();
+        visitTimes.getVisitTimes().addAll(this.visitTimes.findAll());
+        model.put("visittimes", visitTimes);
 
 
         Pet pet = this.pets.findById(petId);
