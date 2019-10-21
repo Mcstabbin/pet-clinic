@@ -80,8 +80,6 @@ class VisitController {
     @ModelAttribute("visit")
     public Visit loadPetWithVisit(@PathVariable("petId") int petId, Map<String, Object> model) {
 
-
-
         Vets vets = new Vets();
         vets.getVetList().addAll(this.vets.findAll());
         model.put("vets", vets);
@@ -90,11 +88,9 @@ class VisitController {
         visitTimes.getVisitList().addAll(this.visitTimes.findAll());
         model.put("visittimes", visitTimes);
 
-
         Pet pet = this.pets.findById(petId);
         pet.setVisitsInternal(this.visits.findByPetId(petId));
         model.put("pet", pet);
-
 
         Visit visit = new Visit();
         pet.addVisit(visit);

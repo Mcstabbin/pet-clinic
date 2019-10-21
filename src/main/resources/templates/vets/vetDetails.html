@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'vets')}">
+
+  <body>
+
+    <h2>Owner Information</h2>
+
+    <table class="table table-striped" th:object="${vet}">
+      <tr>
+        <th>Name</th>
+        <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
+      </tr>
+    </table>
+  
+    <a th:href="@{{id}/edit(id=${vet.id})}" class="btn btn-default">Edit
+      Owner</a>
+    <a th:href="@{{id}/pets/new(id=${vet.id})}" class="btn btn-default">Add
+      New Pet</a>
+  
+    <br />
+    <br />
+    <br />
+    <h2>Pets and Visits</h2>
+
+        <td valign="top">
+          <table class="table-condensed">
+            <thead>
+              <tr>
+                <th>Visit Date</th>
+                <th>Visit Time</th>
+                <th>Description</th>
+                <th>Pet</th>
+                <th>Delete Appointment</th>
+              </tr>
+            </thead>
+            <tr>
+                <td>Visit Date</td>
+                <td>Visit Time</td>
+                <td>Description</td>
+                <td>Pet</td>
+                <td>Delete Appointment</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+  
+    </table>
+  
+  </body>
+
+</html>

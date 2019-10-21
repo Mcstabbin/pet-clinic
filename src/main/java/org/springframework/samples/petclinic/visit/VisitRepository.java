@@ -34,8 +34,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public interface VisitRepository extends Repository<Visit, Integer> {
 
-
-
     /**
      * Save a <code>Visit</code> to the data store, either inserting or updating it.
      *
@@ -48,5 +46,7 @@ public interface VisitRepository extends Repository<Visit, Integer> {
     public void deleteVisitById(Integer visitId);
 
     List<Visit> findByPetId(Integer petId);
+
+    List<Visit> findByVetId(Integer vetId);
 
 }
