@@ -87,7 +87,7 @@ class VisitController {
         model.put("vets", vets);
 
         VisitTimes visitTimes = new VisitTimes();
-        visitTimes.getVisitTimes().addAll(this.visitTimes.findAll());
+        visitTimes.getVisitList().addAll(this.visitTimes.findAll());
         model.put("visittimes", visitTimes);
 
 

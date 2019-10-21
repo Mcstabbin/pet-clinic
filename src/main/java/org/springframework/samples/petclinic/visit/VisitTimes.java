@@ -33,7 +33,7 @@ public class VisitTimes {
     private List<VisitTime> visitTimes;
 
     @XmlElement
-    public List<VisitTime> getVisitTimes() {
+    public List<VisitTime> getVisitList() {
         if (visitTimes == null) {
             visitTimes = new ArrayList<>();
         }

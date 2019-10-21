@@ -18,6 +18,12 @@ import org.springframework.samples.petclinic.visit.VisitRepository;
 import org.springframework.samples.petclinic.vet.Vet;
 import org.springframework.samples.petclinic.vet.VetRepository;
 import org.springframework.samples.petclinic.vet.Vets;
+
+
+import org.springframework.samples.petclinic.visit.VisitTime;
+import org.springframework.samples.petclinic.visit.VisitTimeRepository;
+import org.springframework.samples.petclinic.visit.VisitTimes;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,12 +51,14 @@ class OwnerController {
     private final OwnerRepository owners;
     private VisitRepository visits;
     private VetRepository vets;
+    private final VisitTimeRepository visitTimes;
 
 
-    public OwnerController(OwnerRepository clinicService, VisitRepository visits, VetRepository vets) {
+    public OwnerController(OwnerRepository clinicService, VisitRepository visits, VetRepository vets, VisitTimeRepository visitTimes) {
         this.owners = clinicService;
         this.visits = visits;
         this.vets = vets;
+        this.visitTimes = visitTimes;
     }
 
     @InitBinder
@@ -137,11 +145,15 @@ class OwnerController {
         Vets vets = new Vets();
         vets.getVetList().addAll(this.vets.findAll());
 
+        VisitTimes visitTimes = new VisitTimes();
+        visitTimes.getVisitList().addAll(this.visitTimes.findAll());
+
         Owner owner = this.owners.findById(ownerId);
         for (Pet pet : owner.getPets()) {
             pet.setVisitsInternal(visits.findByPetId(pet.getId()));
         }
 
+        mav.addObject(visitTimes);
         mav.addObject(owner);
         mav.addObject(vets);
         return mav;

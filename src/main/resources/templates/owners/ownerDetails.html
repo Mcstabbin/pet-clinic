@@ -4,11 +4,9 @@
   th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
 
   <body>
-  
 
     <h2>Owner Information</h2>
-  
-  
+
     <table class="table table-striped" th:object="${owner}">
       <tr>
         <th>Name</th>
@@ -64,7 +62,13 @@
             </thead>
             <tr th:each="visit : ${pet.visits}">
               <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}"></td>
-              <td th:text="${visit.timeId}"></td>
+
+              <span th:each="visittime : ${visitTimes.visitList}"> 
+                  <span th:if="${visit.timeId == visittime.id}">
+                    <td th:text="${visittime.timeWindow}"></td>
+                  </span>
+              </span>
+
               <td th:text="${visit?.description}"></td>
               <span th:each="vet : ${vets.vetList}"> 
                 <span th:if="${vet.id == visit.vetId}">
