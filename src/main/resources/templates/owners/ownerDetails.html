@@ -58,6 +58,7 @@
                 <th>Visit Time</th>
                 <th>Description</th>
                 <th>Vetrinarian</th>
+                <th>Delete Appointment</th>
               </tr>
             </thead>
             <tr th:each="visit : ${pet.visits}">
@@ -75,6 +76,11 @@
                   <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
                 </span>
               </span>
+              <td>
+                <a th:href="@{{ownerId}/pets/{petId}/visits/delete/{visitId}(ownerId=${owner.id},petId=${pet.id},visitId=${visit.id})}">Delete
+                  Visit
+                </a>
+              </td>
             </tr>
             <tr>
               <td><a

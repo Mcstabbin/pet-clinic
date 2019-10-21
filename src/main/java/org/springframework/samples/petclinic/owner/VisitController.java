@@ -118,4 +118,11 @@ class VisitController {
         }
     }
 
+
+    @GetMapping("/owners/{ownerId}/pets/{petId}/visits/delete/{visitId}")
+    public String deleteVisit(@PathVariable("visitId") int visitId, Visit visit) {
+        this.visits.deleteVisitById(visitId);
+        return "redirect:/owners/{ownerId}";
+    }
+
 }

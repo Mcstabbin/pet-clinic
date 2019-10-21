@@ -47,6 +47,8 @@ public interface VisitTimeRepository extends Repository<VisitTime, Integer> {
      */
     void save(VisitTime visitTime) throws DataAccessException;
 
+
+
     Collection<VisitTime> findAll() throws DataAccessException;
 
 

@@ -82,8 +82,6 @@ public class Visit extends BaseEntity {
         this.timeId = timeId;
     }
 
-
-
     public void setDescription(String description) {
         this.description = description;
     }
