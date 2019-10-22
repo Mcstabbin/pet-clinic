@@ -17,18 +17,29 @@ package org.springframework.samples.petclinic.visit;
 
 import java.time.LocalDate;
 
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
-
+import javax.persistence.FetchType;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 import javax.validation.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.BaseEntity;
-
+import org.springframework.samples.petclinic.vet.Vet;
 /**
  * Simple JavaBean domain object representing a visit.
  *
@@ -47,7 +58,7 @@ public class Visit extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "visit_time")
+    @Column(name = "time_id")
     private Integer timeId;
 
     @Column(name = "pet_id")
@@ -56,9 +67,23 @@ public class Visit extends BaseEntity {
     @Column(name = "vet_id")
     private Integer vetId;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "time_id", insertable=false, updatable=false)
+    private VisitTime visitTime;
+
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "vet_id", insertable=false, updatable=false)
+    private Vet vet;
+
     /**
      * Creates a new instance of Visit for the current date
      */
+
+    public VisitTime getVisitTime() {
+        return this.visitTime;
+    }
+
     public Visit() {
         this.date = LocalDate.now();
     }
@@ -85,6 +110,10 @@ public class Visit extends BaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Vet getVet() {
+        return this.vet;
     }
 
     public Integer getVetId() {

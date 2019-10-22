@@ -29,7 +29,8 @@
     <tr th:each="visit : ${vet.visits}">
       <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}" /></td>
       <td th:text=" ${visit.description}" /></td>
-      <td th:text="${visit.timeId}"></td>
+      <td th:text="${visit.visitTime.timeWindow}"></td>
+<!--       <td th:text="${visit.visitTime}"></td> -->
     </tr>
   </table>
   
