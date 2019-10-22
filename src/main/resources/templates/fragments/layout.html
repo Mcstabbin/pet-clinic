@@ -88,18 +88,22 @@
   <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
   <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
   <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-
   <script>
-  $( function() {
-    $( "#datepicker" ).datepicker({
-      dateFormat: 'yy-mm-dd'
+    $( function(){
+      $("#datepicker").datepicker({
+        dateFormat: 'yy-mm-dd', // YYYY-MM-DD format
+        beforeShowDay: $.datepicker.noWeekends, // disable weekend
+        minDate: '0'
+      });
     });
-  });
-
-
-  $( function() {
-    $( "#dialog" ).dialog();
-  } );
+    $( function(){
+      $("#datepicker2").datepicker({
+        dateFormat: 'yy-mm-dd' // YYYY-MM-DD format
+      });
+    });
+    $(function(){
+      $( "#dialog" ).dialog();
+    });
   </script>
 
 
