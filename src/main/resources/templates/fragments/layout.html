@@ -18,7 +18,7 @@
     <![endif]-->
 
     <link rel="stylesheet" th:href="@{/resources/css/petclinic.css}"/>
-
+<link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
   </head>
 
 <body>
@@ -88,6 +88,21 @@
   <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
   <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
   <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker({
+      dateFormat: 'yy-mm-dd'
+    });
+  });
+
+
+  $( function() {
+    $( "#dialog" ).dialog();
+  } );
+  </script>
+
+
 
 </body>
 

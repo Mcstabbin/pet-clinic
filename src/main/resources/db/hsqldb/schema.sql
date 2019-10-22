@@ -71,6 +71,7 @@ CREATE TABLE visits (
   description VARCHAR(255)
 );
 
+ALTER TABLE visits ADD CONSTRAINT unique_visits_times UNIQUE(vet_id, visit_date, visit_time);
 ALTER TABLE visits ADD CONSTRAINT fk_visits_pets FOREIGN KEY (pet_id) REFERENCES pets (id);
 ALTER TABLE visits ADD CONSTRAINT fk_visits_time FOREIGN KEY (visit_time) REFERENCES visit_times (id);
 ALTER TABLE visits ADD CONSTRAINT fk_visits_vets FOREIGN KEY (vet_id) REFERENCES vets (id);

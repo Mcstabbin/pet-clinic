@@ -10,40 +10,24 @@
     <table class="table table-striped" th:object="${vet}">
       <tr>
         <th>Name</th>
+        <th>Special</th>
         <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
+                <td><span th:each="specialty : ${vet.specialties}"
+          th:text="${specialty.name + ' '}" /> <span
+          th:if="${vet.nrOfSpecialties == 0}">none</span></td>
       </tr>
     </table>
   
-    <a th:href="@{{id}/edit(id=${vet.id})}" class="btn btn-default">Edit
+    <a th:href="@{{id}/vets/edit(id=${vet.id})}" class="btn btn-default">Edit
       Owner</a>
-    <a th:href="@{{id}/pets/new(id=${vet.id})}" class="btn btn-default">Add
+    <a th:href="@{{id}/vets/new(id=${vet.id})}" class="btn btn-default">Add
       New Pet</a>
   
     <br />
     <br />
     <br />
-    <h2>Pets and Visits</h2>
+    Visits 
 
-        <td valign="top">
-          <table class="table-condensed">
-            <thead>
-              <tr>
-                <th>Visit Date</th>
-                <th>Visit Time</th>
-                <th>Description</th>
-                <th>Pet</th>
-                <th>Delete Appointment</th>
-              </tr>
-            </thead>
-            <tr>
-                <td>Visit Date</td>
-                <td>Visit Time</td>
-                <td>Description</td>
-                <td>Pet</td>
-                <td>Delete Appointment</td>
-            </tr>
-          </table>
-        </td>
       </tr>
   
     </table>

@@ -8,6 +8,12 @@
     Visit
   </h2>
 
+  <div id="errors" th:if="${(param.error != null)}">
+    <div  id="dialog" title="Basic dialog">
+      <p>This vet is not availible at the time selected, please select a new time slot</p>
+    </div>
+  </div>
+
   <b>Pet</b>
   <table class="table table-striped">
     <thead>

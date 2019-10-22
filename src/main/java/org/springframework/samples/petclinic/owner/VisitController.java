@@ -109,8 +109,13 @@ class VisitController {
         if (result.hasErrors()) {
             return "pets/createOrUpdateVisitForm";
         } else {
-            this.visits.save(visit);
-            return "redirect:/owners/{ownerId}";
+            try {
+                this.visits.save(visit);
+                return "redirect:/owners/{ownerId}";
+            } catch(Exception e) {
+                return "redirect:/owners/{ownerId}/pets/{petId}/visits/new?error=1";
+                }
+            
         }
     }
 

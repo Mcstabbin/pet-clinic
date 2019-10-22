@@ -41,7 +41,7 @@ public interface VisitRepository extends Repository<Visit, Integer> {
      * @see BaseEntity#isNew
      */
     void save(Visit visit) throws DataAccessException;
-    
+
     @Transactional
     public void deleteVisitById(Integer visitId);
 
