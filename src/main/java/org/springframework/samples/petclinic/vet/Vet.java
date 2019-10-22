@@ -14,19 +14,20 @@
  * limitations under the License.
  */
 package org.springframework.samples.petclinic.vet;
-// package org.springframework.samples.petclinic.visit;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+import org.springframework.samples.petclinic.visit.Visit;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
+
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 
@@ -46,8 +47,8 @@ import org.springframework.samples.petclinic.model.Person;
 @Table(name = "vets")
 public class Vet extends Person {
 
-    // @OneToMany(mappedBy = "vet")
-    // public Set<Visit> visits;
+    @OneToMany(mappedBy = "vetId", fetch = FetchType.EAGER)
+    private Set<Visit> visits;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"), inverseJoinColumns = @JoinColumn(name = "specialty_id"))
@@ -60,6 +61,14 @@ public class Vet extends Person {
         return this.specialties;
     }
 
+    protected Set<Visit> getVisitsInternal() {
+        if (this.visits == null) {
+            this.visits = new HashSet<>();
+        }
+        return this.visits;
+    }
+
+
     protected void setSpecialtiesInternal(Set<Specialty> specialties) {
         this.specialties = specialties;
     }
@@ -71,6 +80,15 @@ public class Vet extends Person {
                 new MutableSortDefinition("name", true, true));
         return Collections.unmodifiableList(sortedSpecs);
     }
+
+    @XmlElement
+    public List<Visit> getVisits() {
+        List<Visit> sortedSpecs = new ArrayList<>(getVisitsInternal());
+        PropertyComparator.sort(sortedSpecs,
+                new MutableSortDefinition("name", true, true));
+        return Collections.unmodifiableList(sortedSpecs);
+    }
+
 
     public int getNrOfSpecialties() {
         return getSpecialtiesInternal().size();

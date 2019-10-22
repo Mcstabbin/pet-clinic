@@ -15,6 +15,9 @@
  */
 package org.springframework.samples.petclinic.vet;
 
+import org.springframework.samples.petclinic.visit.Visit;
+import org.springframework.samples.petclinic.visit.VisitRepository;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,9 +47,11 @@ import java.util.Map;
 class VetController {
 
     private final VetRepository vets;
+    private final VisitRepository visits;
 
-    public VetController(VetRepository clinicService) {
+    public VetController(VetRepository clinicService,VisitRepository visits) {
         this.vets = clinicService;
+        this.visits = visits;
     }
 
     @GetMapping("/vets.html")

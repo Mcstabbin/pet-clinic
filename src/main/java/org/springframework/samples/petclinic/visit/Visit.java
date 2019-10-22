@@ -56,8 +56,6 @@ public class Visit extends BaseEntity {
     @Column(name = "vet_id")
     private Integer vetId;
 
-
-
     /**
      * Creates a new instance of Visit for the current date
      */
