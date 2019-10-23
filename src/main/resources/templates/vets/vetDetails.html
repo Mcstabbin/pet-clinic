@@ -4,20 +4,21 @@
   th:replace="~{fragments/layout :: layout (~{::body},'vets')}">
 
   <body>
-
     <h2>Vet Information</h2>
-
     <table class="table table-striped" th:object="${vet}">
       <tr>
         <th>Name</th>
         <th>Special</th>
+      </tr>
+      <tr>
         <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
-                <td><span th:each="specialty : ${vet.specialties}"
-          th:text="${specialty.name + ' '}" /> <span
-          th:if="${vet.nrOfSpecialties == 0}">none</span></td>
+        <td>
+          <span th:each="specialty : ${vet.specialties}"
+          th:text="${specialty.name + ' '}" /> 
+          <span th:if="${vet.nrOfSpecialties == 0}">none</span>
+        </td>
       </tr>
     </table>
-
     <br />
     <h2>Vet Appointments</h2>
     <table class="table table-striped">
@@ -30,24 +31,7 @@
       <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}" /></td>
       <td th:text=" ${visit.description}" /></td>
       <td th:text="${visit.visitTime.timeWindow}"></td>
-<!--       <td th:text="${visit.visitTime}"></td> -->
     </tr>
   </table>
-  
-    <a th:href="@{{id}/vets/edit(id=${vet.id})}" class="btn btn-default">Edit
-      Owner</a>
-    <a th:href="@{{id}/vets/new(id=${vet.id})}" class="btn btn-default">Add
-      New Pet</a>
-  
-    <br />
-    <br />
-    <br />
-    Visits 
-
-      </tr>
-  
-    </table>
-  
   </body>
-
 </html>

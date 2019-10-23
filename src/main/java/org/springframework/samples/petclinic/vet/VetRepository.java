@@ -50,6 +50,8 @@ public interface VetRepository extends Repository<Vet, Integer> {
 
     Collection<Vet> findAll() throws DataAccessException;
 
+    void save(Vet vet);
+
     // /**
     //  * Retrieve all {@link VetsLists}s from the data store.
     //  * @return a Collection of {@link VetsLists}s.

@@ -142,20 +142,20 @@ class OwnerController {
     public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
         ModelAndView mav = new ModelAndView("owners/ownerDetails");
 
-        Vets vets = new Vets();
-        vets.getVetList().addAll(this.vets.findAll());
+        // Vets vets = new Vets();
+        // vets.getVetList().addAll(this.vets.findAll());
 
-        VisitTimes visitTimes = new VisitTimes();
-        visitTimes.getVisitList().addAll(this.visitTimes.findAll());
+        // VisitTimes visitTimes = new VisitTimes();
+        // visitTimes.getVisitList().addAll(this.visitTimes.findAll());
 
         Owner owner = this.owners.findById(ownerId);
         for (Pet pet : owner.getPets()) {
             pet.setVisitsInternal(visits.findByPetId(pet.getId()));
         }
-
-        mav.addObject(visitTimes);
+        // mav.addObject(vets);
+        // mav.addObject(visitTimes);
         mav.addObject(owner);
-        mav.addObject(vets);
+        
         return mav;
     }
 

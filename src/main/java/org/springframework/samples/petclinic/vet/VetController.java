@@ -76,12 +76,35 @@ class VetController {
     @GetMapping("/vets/{vetId}")
     public ModelAndView showVet(@PathVariable("vetId") int vetId) {
         ModelAndView mav = new ModelAndView("vets/vetDetails");
-
         Vet vet = this.vets.findById(vetId);
-
         mav.addObject(vet);
         return mav;
     }
+
+    @GetMapping("/vets/new")
+    public String initNewVisitForm( Map<String, Object> model) {
+        Vet vet = new Vet();
+        model.put("vet", vet);
+        return "vets/createOrUpdateVetForm";
+    }
+
+
+    @PostMapping("/vets/new")
+    public String processCreationForm(@Valid Vet vet, BindingResult result, Map<String, Object> model) {
+        if (result.hasErrors()) {
+            return "vets/createOrUpdateVetForm";
+        } else {
+            this.vets.save(vet);
+
+            Vets vets = new Vets();
+            vets.getVetList().addAll(this.vets.findAll());
+            model.put("vets", vets);
+            return "vets/vetList";
+        }
+    }
+
+
+
 
 
 }
