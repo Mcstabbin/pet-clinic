@@ -12,15 +12,6 @@
             <option th:each="vet : ${items}" th:value="${vet.id}"
               th:text="${vet.firstName + ' ' + vet.lastName}">dog</option>
           </select>
-
-<!-- 
-      <tr th:each="vet : ${vets.vetList}">
-        <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
-        <td><span th:each="specialty : ${vet.specialties}"
-          th:text="${specialty.name + ' '}" /> <span
-          th:if="${vet.nrOfSpecialties == 0}">none</span></td>
-      </tr>
- -->
           <span th:if="${valid}"
             class="glyphicon glyphicon-ok form-control-feedback"
             aria-hidden="true"></span>

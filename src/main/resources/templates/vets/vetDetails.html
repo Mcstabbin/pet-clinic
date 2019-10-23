@@ -8,15 +8,9 @@
     <table class="table table-striped" th:object="${vet}">
       <tr>
         <th>Name</th>
-        <th>Special</th>
       </tr>
       <tr>
         <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
-        <td>
-          <span th:each="specialty : ${vet.specialties}"
-          th:text="${specialty.name + ' '}" /> 
-          <span th:if="${vet.nrOfSpecialties == 0}">none</span>
-        </td>
       </tr>
     </table>
     <br />

@@ -74,11 +74,11 @@ class VetController {
     }
 
     @GetMapping("/vets/{vetId}")
-    public ModelAndView showVet(@PathVariable("vetId") int vetId) {
-        ModelAndView mav = new ModelAndView("vets/vetDetails");
-        Vet vet = this.vets.findById(vetId);
-        mav.addObject(vet);
-        return mav;
+    public String showVet(@PathVariable("vetId") int vetId, Map<String, Object> model) {
+        Vet vet = new Vet();
+        vet = vets.findById(vetId);
+        model.put("vet", vet);
+        return "vets/vetDetails";
     }
 
     @GetMapping("/vets/new")
