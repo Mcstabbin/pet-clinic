@@ -1,8 +1,10 @@
 -adding a pet, 
--adding a vet, 
+-adding a vet,
+
 -scheduling an appointment for a pet, 
 -displaying a list of appointments for a pet or a vet. 
--Two pets cannot schedule for the same vet at the same time. 
+-Two pets cannot schedule for the same vet at the same time.
+
 -Vets are available M-F 8am-5pm
 -Allow to cancel on an appointment
 -Front-end is an Admin Panel that allows the above functionality
