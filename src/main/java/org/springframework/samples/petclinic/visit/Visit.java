@@ -34,12 +34,13 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import javax.validation.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.vet.Vet;
+import org.springframework.samples.petclinic.owner.Pet;
 /**
  * Simple JavaBean domain object representing a visit.
  *
@@ -67,12 +68,15 @@ public class Visit extends BaseEntity {
     @Column(name = "vet_id")
     private Integer vetId;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "time_id", insertable=false, updatable=false)
     private VisitTime visitTime;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "pet_id", insertable=false, updatable=false)
+    private Pet pet;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vet_id", insertable=false, updatable=false)
     private Vet vet;
 
@@ -114,6 +118,10 @@ public class Visit extends BaseEntity {
 
     public Vet getVet() {
         return this.vet;
+    }
+
+    public Pet getPet() {
+        return this.pet;
     }
 
     public Integer getVetId() {

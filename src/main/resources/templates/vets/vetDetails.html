@@ -20,11 +20,42 @@
       <th>Date</th>
       <th>Description</th>
       <th>Visit Time</th>
+
+      <th>Pet Name</th>
+      <th>Pet Type</th>
+      <th>Pet Owner</th>
+      <th>Cancel</th>
+<!--       <th>ownerid</th>
+      <th>petid</th>
+      <th>visitid</th>
+      <th>vetid</th>
+ -->
+
     </tr>
     <tr th:each="visit : ${vet.visits}">
+
       <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}" /></td>
       <td th:text=" ${visit.description}" /></td>
       <td th:text="${visit.visitTime.timeWindow}"></td>
+
+      <td th:text="${visit.pet.name}"></td>
+      <td th:text="${visit.pet.type}"></td>
+      <td th:text="${visit.pet.owner?.firstName + ' ' + visit.pet.owner?.lastName}" /></td>
+
+
+
+<!--       <td th:text="${visit.pet.owner?.id}" /></td>
+      <td th:text="${visit.pet.id}" /></td>
+      <td th:text="${visit.id}" /></td>
+      <td th:text="${vet.id}" /></td>
+ -->
+
+
+    <td>
+      <a th:href="@{{ownerId}/pets/{petId}/visits/delete/{visitId}/vets/{vetId}(ownerId=${visit.pet.owner.id},petId=${visit.pet.id},visitId=${visit.id},vetId=${vet.id})}">Delete
+        Visit
+      </a>
+    </td>
     </tr>
   </table>
   </body>

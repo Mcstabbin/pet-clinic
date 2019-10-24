@@ -104,6 +104,10 @@ class VisitController {
     }
 
     // Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is called
+
+
+
+
     @PostMapping("/owners/{ownerId}/pets/{petId}/visits/new")
     public String processNewVisitForm(@Valid Visit visit, BindingResult result) {
         if (result.hasErrors()) {
@@ -124,6 +128,12 @@ class VisitController {
     public String deleteVisit(@PathVariable("visitId") int visitId, Visit visit) {
         this.visits.deleteVisitById(visitId);
         return "redirect:/owners/{ownerId}";
+    }
+
+    @GetMapping("/vets/{ownerId}/pets/{petId}/visits/delete/{visitId}/vets/{vetId}")
+    public String deleteVisitvet(@PathVariable("visitId") int visitId, Visit visit) {
+        this.visits.deleteVisitById(visitId);
+        return "redirect:/vets/{vetId}";
     }
 
 }
